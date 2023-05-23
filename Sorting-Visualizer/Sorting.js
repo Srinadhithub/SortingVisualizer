@@ -61,7 +61,7 @@ async function insertionSort(){
           await new Promise((resolve) =>
           setTimeout(() => {
             resolve();
-          },1000)
+          },500)
         );
           if(array[j]>array[j+1]){
              swap(j,j+1,array);
@@ -101,7 +101,7 @@ async function insertionSort(){
               await new Promise((resolve) =>
               setTimeout(() => {
                 resolve();
-              }, 700)
+              }, 300)
             );
             e.style.backgroundColor='black';
           }
@@ -191,7 +191,7 @@ e1.style.backgroundColor='orange';
         await new Promise((resolve) =>
         setTimeout(() => {
           resolve();
-        }, 1700)
+        }, 1000)
       );
          if(i!=pivotIndex)
           swap(i,pivotIndex,arr);
@@ -205,7 +205,7 @@ e1.style.backgroundColor='orange';
   await new Promise((resolve) =>
   setTimeout(() => {
     resolve();
-  }, 1700)
+  }, 1000)
 );
   swap(pivotIndex,end,arr);
   return pivotIndex;
@@ -229,6 +229,42 @@ quick.style.backgroundColor='green';
 await quickSort(0,array.length-1);
 buttonDisable(false);
   quick.style.backgroundColor='aquamarine';
+}
+async function mergeSort(start,end,arr){
+  if(start<end){
+    let mid=Math.floor((start+end)/2);
+ await mergeSort(start,mid,arr);
+await mergeSort(mid+1,end,arr);
+await merge(start,mid,end,arr);
+  }
+  
+}
+async function merge(start,mid,end,arr){
+let temparr= new Array(end-start+1);
+let j=0;
+for(let i=start;i<=end;i++){
+  temparr[j++]=arr[i];
+}
+temparr.sort();
+j=0;
+for(let i=start;i<=end;i++){
+arr[i]=temparr[j++];
+  let e1=document.getElementById('elem'+i);
+  e1.style.height=(arr[i]*4+'px');
+  e1.innerHTML=arr[i];
+await new Promise((resolve) =>
+  setTimeout(() => {
+    resolve();
+  }, 700));
+}
+}
+async function mergesort(){
+  buttonDisable(true);
+  merged.style.backgroundColor='green';
+await mergeSort(0,array.length-1,array);
+  buttonDisable(false);
+  merged.style.backgroundColor='aquamarine';
+  console.log(arr)
 }
 
  function buttonDisable(value){

@@ -4,13 +4,13 @@
 .btns{
 
     margin-left: 15px;
-    margin-right: 14px;
+    margin-right: 12px;
     margin-bottom: 5px;
     margin-top: 5px;
     border: solid 2px rgb(210, 169, 20);
     background-color: aquamarine;
     border-radius: 12px;
-    font-size: large;
+    font-size: 22px;
     font-weight: bold;
    font-family:'Lucida Sans Regular';
    height:55px;
