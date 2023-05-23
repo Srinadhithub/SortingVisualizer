@@ -124,7 +124,7 @@ for(let i=0;i<=19;i++)
 if(x!=null)
 x.remove();
 }
-    for(let i=1;i<=20;i++) array.push(Math.floor(Math.random() * 99 +1));
+    for(let i=1;i<=20;i++) array.push(Math.floor(Math.random() * 99 +2));
 let parent=document.getElementsByClassName("bars");
 for(let i=0;i<array.length;i++){
     let child=document.createElement("div");
@@ -233,6 +233,7 @@ buttonDisable(false);
 async function mergeSort(start,end,arr){
   if(start<end){
     let mid=Math.floor((start+end)/2);
+    console.log(mid);
  await mergeSort(start,mid,arr);
 await mergeSort(mid+1,end,arr);
 await merge(start,mid,end,arr);
@@ -245,13 +246,20 @@ let j=0;
 for(let i=start;i<=end;i++){
   temparr[j++]=arr[i];
 }
-temparr.sort();
+temparr.sort( function( a , b){
+  if(a > b) return 1;
+  if(a < b) return -1;
+  return 0;
+});
 j=0;
+let colorvar='white';
+while(colorvar=='white') colorvar=getColor();
 for(let i=start;i<=end;i++){
 arr[i]=temparr[j++];
   let e1=document.getElementById('elem'+i);
   e1.style.height=(arr[i]*4+'px');
   e1.innerHTML=arr[i];
+  e1.style.backgroundColor=colorvar;
 await new Promise((resolve) =>
   setTimeout(() => {
     resolve();
@@ -264,7 +272,6 @@ async function mergesort(){
 await mergeSort(0,array.length-1,array);
   buttonDisable(false);
   merged.style.backgroundColor='aquamarine';
-  console.log(arr)
 }
 
  function buttonDisable(value){
